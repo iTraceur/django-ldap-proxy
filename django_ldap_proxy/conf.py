@@ -77,22 +77,22 @@ class LazySettings(object):
 
     LDAP_AUTH_CLEAN_USER_DATA = LazySetting(
         name="LDAP_AUTH_CLEAN_USER_DATA",
-        default="apps.common.services.ldap.utils.clean_user_data",
+        default="django_ldap_proxy.utils.clean_user_data",
     )
 
     LDAP_AUTH_FORMAT_SEARCH_FILTERS = LazySetting(
         name="LDAP_AUTH_FORMAT_SEARCH_FILTERS",
-        default="apps.common.services.ldap.utils.format_search_filters",
+        default="django_ldap_proxy.utils.format_search_filters",
     )
 
     LDAP_AUTH_SYNC_USER_RELATIONS = LazySetting(
         name="LDAP_AUTH_SYNC_USER_RELATIONS",
-        default="apps.common.services.ldap.utils.sync_user_relations",
+        default="django_ldap_proxy.utils.sync_user_relations",
     )
 
     LDAP_AUTH_FORMAT_USERNAME = LazySetting(
         name="LDAP_AUTH_FORMAT_USERNAME",
-        default="apps.common.services.ldap.utils.format_username_openldap",
+        default="django_ldap_proxy.utils.format_username_openldap",
     )
 
     LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = LazySetting(

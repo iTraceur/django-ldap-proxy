@@ -4,9 +4,9 @@ Django authentication backend.
 
 from django.contrib.auth.backends import ModelBackend
 
-from .conf import config
-from .ldap import connection
-from .utils import get_or_create_user
+from django_ldap_proxy.conf import config
+from django_ldap_proxy.ldap import connection
+from django_ldap_proxy.utils import get_or_create_user
 
 
 def authenticate(*args, **kwargs):

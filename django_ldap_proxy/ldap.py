@@ -12,8 +12,8 @@ from dateutil import parser
 from ldap3.core.exceptions import LDAPException, LDAPOperationResult
 from passlib.hash import ldap_salted_sha1
 
-from .conf import config
-from .utils import format_search_filter, format_username_openldap, format_admin_openldap
+from django_ldap_proxy.conf import config
+from django_ldap_proxy.utils import format_search_filter, format_username_openldap, format_admin_openldap
 
 logger = logging.getLogger(__name__)
 

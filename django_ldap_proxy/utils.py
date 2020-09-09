@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.utils.encoding import force_text
 from django.utils.module_loading import import_string
 
-from .conf import config
+from django_ldap_proxy.conf import config
 
 
 def import_func(func):
