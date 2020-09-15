@@ -27,7 +27,7 @@ if AUTH_PROVIDER == 'LDAP':
     LDAP_AUTH_USER_FIELDS = {
         "username": "cn",
         "email": "mail",
-        "cell_phone": "mobile"
+        "mobile": "mobile"
     }
     LDAP_AUTH_CONNECTION_USERNAME = 'ldapadminuser'
     LDAP_AUTH_CONNECTION_PASSWORD = 'ldapadminpassword'

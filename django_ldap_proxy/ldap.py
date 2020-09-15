@@ -304,14 +304,14 @@ def add_user(username, password, email=None, mobile=None, sn=None):
     conn.create_user(username, password, email, mobile, sn)
 
 
-def modify_user(username, password=None, email=None, cell_phone=None, full_name=None):
+def modify_user(username, password=None, email=None, mobile=None, full_name=None):
     conn = admin_connection()
     if not conn:
         raise LDAPOperationResult('LDAP connect failed')
 
     changes = {
         'mail': email,
-        'mobile': cell_phone,
+        'mobile': mobile,
         'sn': full_name
     }
     if password:
