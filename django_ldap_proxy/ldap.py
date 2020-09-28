@@ -221,7 +221,6 @@ def get_ldap3_connection(username, password):
         'client_strategy': ldap3.SYNC,
         'user': username,
         'password': password,
-        'raise_exceptions': True,
         'receive_timeout': config.LDAP_AUTH_RECEIVE_TIMEOUT,
     }
     return ldap3.Connection(server, **params)
