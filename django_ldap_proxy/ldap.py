@@ -251,11 +251,13 @@ def connection(**kwargs):
             if config.LDAP_AUTH_USE_TLS:
                 c.start_tls(read_server_info=False)
             # Perform initial authentication bind.
-            c.bind(read_server_info=True)
-
-            # Return the connection.
-            logger.info("LDAP connect succeeded")
-            yield Connection(c)
+            if not c.bind(read_server_info=True):
+                logger.warning("LDAP bind failed")
+                yield None
+            else:
+                # Return the connection.
+                logger.info("LDAP connect succeeded")
+                yield Connection(c)
         except LDAPException as ex:
             logger.warning("LDAP bind failed: {ex}".format(ex=ex))
             yield None
