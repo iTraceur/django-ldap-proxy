@@ -8,8 +8,8 @@ if py_version < (3, 6):
     raise RuntimeError('django-ldap-proxy requires Python 3.6 or above.')
 
 REQUIRES = [
-    'Django==3.1',
-    'ldap3==2.8',
+    'Django~=3.1',
+    'ldap3~=2.8',
     'passlib==1.7.2',
     'python-dateutil==2.8.1'
 ]
