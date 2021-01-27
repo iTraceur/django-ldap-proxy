@@ -120,12 +120,13 @@ class Connection(object):
                 'cn': username,
                 'sn': sn or username,
                 'userPassword': ldap_salted_sha1.hash(password),
-                'pwdReset': 'TRUE'
             }
             if mail:
                 attributes['mail'] = mail
             if mobile:
                 attributes['mobile'] = mobile
+            if config.LDAP_PPOLICY_ENABLED:
+                attributes['pwdReset'] = 'TRUE'
             return self.add_user(user_dn, attributes=attributes)
 
     def modify_user(self, username, **kwargs):

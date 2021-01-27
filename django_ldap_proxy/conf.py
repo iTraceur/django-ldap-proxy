@@ -130,5 +130,10 @@ class LazySettings(object):
         default=5
     )
 
+    LDAP_PPOLICY_ENABLED = LazySetting(
+        name="LDAP_PPOLICY_ENABLED",
+        default=False
+    )
+
 
 config = LazySettings(settings)

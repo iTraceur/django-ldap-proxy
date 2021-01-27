@@ -19,6 +19,10 @@ if AUTH_PROVIDER == 'LDAP':
     LDAP_DOMAIN_SLICE = ('example', 'com')
     # The URL of the LDAP server.
     LDAP_AUTH_URL = "ldap://192.168.100.100:389"
+
+    # Whether the LDAP ppolicy module enabled.
+    LDAP_PPOLICY_ENABLED = False
+
     # The LDAP search base for looking up users.
     LDAP_AUTH_SEARCH_BASE = f"ou=People,dc={LDAP_DOMAIN_SLICE[0]},dc={LDAP_DOMAIN_SLICE[1]}"
     LDAP_POLICY_SEARCH_BASE = f'ou=policies,dc={LDAP_DOMAIN_SLICE[0]},dc={LDAP_DOMAIN_SLICE[1]}'
