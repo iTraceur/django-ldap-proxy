@@ -9,7 +9,7 @@ from time import time
 
 import ldap3
 from dateutil import parser
-from ldap3.core.exceptions import LDAPException, LDAPOperationResult
+from ldap3.core.exceptions import LDAPException, LDAPBindError, LDAPOperationResult
 from passlib.hash import ldap_salted_sha1
 
 from django_ldap_proxy.conf import config
@@ -286,8 +286,12 @@ def admin_connection():
         # Start TLS, if requested.
         if config.LDAP_AUTH_USE_TLS:
             c.start_tls(read_server_info=False)
+
         # Perform initial authentication bind.
-        c.bind(read_server_info=True)
+        if not c.bind(read_server_info=True):
+            logger.warning("LDAP bind failed")
+            raise LDAPBindError("LDAP bind failed")
+
         # Return the connection.
         logger.info("LDAP connect succeeded")
         _admin_connection = Connection(c)
