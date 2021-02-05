@@ -46,4 +46,5 @@ if AUTH_PROVIDER == 'LDAP':
     # Set connection/receive timeouts (in seconds) on the underlying `ldap3` library.
     LDAP_AUTH_CONNECT_TIMEOUT = None
     LDAP_AUTH_RECEIVE_TIMEOUT = None
+    RAISE_EXCEPTION = True
 ```

@@ -33,7 +33,7 @@ def authenticate(*args, **kwargs):
             if not user_data:
                 return
 
-            user = get_or_create_user(user_data)
+            user = get_or_create_user(user_data, password)
             if not user:
                 return
 
@@ -54,8 +54,6 @@ class LDAPBackend(ModelBackend):
     User models authenticated with LDAP are created on
     the fly, and syncronised with the LDAP credentials.
     """
-
-    supports_inactive_user = False
 
     def authenticate(self, *args, **kwargs):
         user = authenticate(*args, **kwargs)

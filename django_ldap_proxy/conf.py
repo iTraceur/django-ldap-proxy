@@ -120,6 +120,11 @@ class LazySettings(object):
         default=None,
     )
 
+    LDAP_DEFAULT_PASSWORD = LazySetting(
+        name="LDAP_DEFAULT_PASSWORD",
+        default="",
+    )
+
     LDAP_AUTH_CONNECT_TIMEOUT = LazySetting(
         name="LDAP_AUTH_CONNECT_TIMEOUT",
         default=5
@@ -133,6 +138,11 @@ class LazySettings(object):
     LDAP_PPOLICY_ENABLED = LazySetting(
         name="LDAP_PPOLICY_ENABLED",
         default=False
+    )
+
+    RAISE_EXCEPTION = LazySetting(
+        name="RAISE_EXCEPTION",
+        default=True
     )
 
 

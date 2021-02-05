@@ -211,7 +211,7 @@ class Connection(object):
             return 0
 
 
-def get_ldap3_connection(username, password):
+def get_ldap3_connection(username, password, client_strategy=ldap3.SYNC, raise_exception=False):
     server = ldap3.Server(
         config.LDAP_AUTH_URL,
         allowed_referral_hosts=[("*", True)],
@@ -219,9 +219,10 @@ def get_ldap3_connection(username, password):
         connect_timeout=config.LDAP_AUTH_CONNECT_TIMEOUT,
     )
     params = {
-        'client_strategy': ldap3.SYNC,
+        'client_strategy': client_strategy,
         'user': username,
         'password': password,
+        'raise_exceptions': raise_exception,
         'receive_timeout': config.LDAP_AUTH_RECEIVE_TIMEOUT,
     }
     return ldap3.Connection(server, **params)
@@ -241,7 +242,7 @@ def connection(**kwargs):
 
     # Connect.
     try:
-        c = get_ldap3_connection(user_dn, password)
+        c = get_ldap3_connection(user_dn, password, raise_exception=config.RAISE_EXCEPTION)
     except LDAPException as ex:
         logger.warning("LDAP connect failed: {ex}".format(ex=ex))
         yield None
@@ -278,7 +279,9 @@ def admin_connection():
     password = config.LDAP_AUTH_CONNECTION_PASSWORD
 
     try:
-        c = get_ldap3_connection(admin_dn, password)
+        c = get_ldap3_connection(admin_dn, password,
+                                 client_strategy=ldap3.REUSABLE,
+                                 raise_exception=config.RAISE_EXCEPTION)
     except LDAPException as exc:
         logger.warning("LDAP connect failed: {exc}".format(exc=exc))
         raise exc

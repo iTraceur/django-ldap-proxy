@@ -145,7 +145,7 @@ def format_search_filters(ldap_fields):
     ]
 
 
-def get_or_create_user(user_data):
+def get_or_create_user(user_data, password=None):
     """
     Returns a Django user for the given LDAP user data.
 
@@ -181,7 +181,11 @@ def get_or_create_user(user_data):
     )
     # If the user was created, set them an unusable password.
     if created:
-        user.set_unusable_password()
+        password = password or config.LDAP_DEFAULT_PASSWORD
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
         user.save()
     # Update relations
     import_func(config.LDAP_AUTH_SYNC_USER_RELATIONS)(user, attributes)
